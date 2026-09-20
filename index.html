@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Traffic Memory AI
+</title>
+
+<link
+    rel="stylesheet"
+    href="/static/style.css"
+>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+<div>
+
+<h1>
+TRAFFIC MEMORY AI
+</h1>
+
+<p>
+Predict → Simulate → Decide → Divert → Advise
+</p>
+
+</div>
+
+<div class="badge">
+LIVE ANALYTICS
+</div>
+
+</header>
+
+
+<main class="layout">
+
+
+<!-- INPUT PANEL -->
+
+<section class="panel controls">
+
+<h2>
+Traffic + Context Input
+</h2>
+
+
+<form id="trafficForm">
+
+
+<label>
+
+Road / Corridor
+
+<input
+    id="road"
+    value="Hitech City Road"
+    required
+>
+
+</label>
+
+
+<div class="grid2">
+
+
+<label>
+
+Latitude
+
+<input
+    id="lat"
+    type="number"
+    step="any"
+    value="17.4435"
+>
+
+</label>
+
+
+<label>
+
+Longitude
+
+<input
+    id="lng"
+    type="number"
+    step="any"
+    value="78.3772"
+>
+
+</label>
+
+
+<label>
+
+Vehicles / minute
+
+<input
+    id="vehicles_per_min"
+    type="number"
+    value="85"
+    min="0"
+>
+
+</label>
+
+
+<label>
+
+Average speed km/h
+
+<input
+    id="avg_speed_kmph"
+    type="number"
+    value="28"
+    min="1"
+>
+
+</label>
+
+
+<label>
+
+Road occupancy %
+
+<input
+    id="occupancy"
+    type="number"
+    value="68"
+    min="0"
+    max="100"
+>
+
+</label>
+
+
+<label>
+
+Signal delay seconds
+
+<input
+    id="signal_delay_sec"
+    type="number"
+    value="55"
+    min="0"
+>
+
+</label>
+
+
+</div>
+
+
+<label>
+
+Weather factor
+
+<input
+    id="weather"
+    type="number"
+    step="0.1"
+    min="0"
+    max="1"
+    value="0"
+>
+
+</label>
+
+
+<div class="checks">
+
+<label>
+
+<input
+    id="incident"
+    type="checkbox"
+>
+
+Incident
+
+</label>
+
+
+<label>
+
+<input
+    id="roadwork"
+    type="checkbox"
+>
+
+Roadwork
+
+</label>
+
+</div>
+
+
+<button type="submit">
+
+RUN TRAFFIC ANALYSIS
+
+</button>
+
+
+</form>
+
+
+<hr>
+
+
+<h2>
+Google Route Test
+</h2>
+
+
+<input
+    id="origin"
+    placeholder="Origin"
+    value="Hitech City, Hyderabad"
+>
+
+
+<input
+    id="destination"
+    placeholder="Destination"
+    value="Secunderabad, Hyderabad"
+>
+
+
+<button
+    id="routeBtn"
+    class="secondary"
+>
+
+GET LIVE GOOGLE ROUTES
+
+</button>
+
+
+<div
+    id="routeResult"
+    class="small"
+></div>
+
+
+</section>
+
+
+<!-- MAP -->
+
+<section class="panel mapPanel">
+
+<div id="map"></div>
+
+<div class="mapLegend">
+
+<span>🟢 Low</span>
+
+<span>🟡 Medium</span>
+
+<span>🟠 High</span>
+
+<span>🔴 Critical</span>
+
+</div>
+
+</section>
+
+
+<!-- METRICS -->
+
+<section class="cards">
+
+
+<div class="metric">
+
+<span>
+Current Risk
+</span>
+
+<strong id="currentRisk">
+—
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<span>
+Peak Risk
+</span>
+
+<strong id="peakRisk">
+—
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<span>
+Forecast Horizon
+</span>
+
+<strong id="peakTime">
+—
+</strong>
+
+</div>
+
+
+<div class="metric">
+
+<span>
+Training Rows
+</span>
+
+<strong id="modelRows">
+—
+</strong>
+
+</div>
+
+
+</section>
+
+
+<!-- FORECAST -->
+
+<section class="panel">
+
+<h2>
+🔮 Future Forecast
+</h2>
+
+<div
+    id="forecast"
+    class="forecast"
+></div>
+
+</section>
+
+
+<!-- TRAFFIC GHOST -->
+
+<section class="panel">
+
+<h2>
+👻 Traffic Ghost
+</h2>
+
+<p>
+Historical patterns similar to the current situation
+</p>
+
+<div id="ghost"></div>
+
+</section>
+
+
+<!-- WHAT IF -->
+
+<section class="panel">
+
+<h2>
+🧪 What-If Network Simulator
+</h2>
+
+<div
+    id="scenarios"
+    class="scenarioGrid"
+></div>
+
+</section>
+
+
+<!-- POLICE HUB -->
+
+<section class="panel police">
+
+<h2>
+👮 Traffic Police Hub
+</h2>
+
+
+<div class="policeGrid">
+
+
+<div>
+
+<b>
+Alert
+</b>
+
+<p id="alertText">
+Run an analysis.
+</p>
+
+</div>
+
+
+<div>
+
+<b>
+Location
+</b>
+
+<p id="locationText">
+—
+</p>
+
+</div>
+
+
+<div>
+
+<b>
+Severity
+</b>
+
+<p id="severityText">
+—
+</p>
+
+</div>
+
+
+<div>
+
+<b>
+Recommended Action
+</b>
+
+<p id="actionText">
+Manual decision required.
+</p>
+
+</div>
+
+
+</div>
+
+
+<button
+    id="divertBtn"
+    class="danger"
+>
+
+CREATE DIVERSION PLAN
+
+</button>
+
+
+<div id="diversion"></div>
+
+
+</section>
+
+
+<!-- PUBLIC ADVISORY -->
+
+<section class="panel">
+
+<h2>
+🌐 Public Advisory
+</h2>
+
+
+<div
+    id="advisory"
+    class="advisory"
+>
+
+No advisory generated yet.
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+Traffic Memory AI — Prototype for traffic research and hackathon demonstration.
+
+</footer>
+
+
+<script>
+
+window.GOOGLE_MAPS_KEY =
+{{ google_maps_key|tojson }};
+
+</script>
+
+
+<script
+    src="/static/app.js"
+></script>
+
+
+<script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_key|urlencode }}&loading=async&callback=initMap"
+></script>
+
+
+</body>
+
+</html>

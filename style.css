@@ -1,0 +1,578 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background:
+        #08111f;
+
+    color:
+        #e9f1ff;
+}
+
+
+.topbar {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        20px 5%;
+
+    background:
+        #0c1728;
+
+    border-bottom:
+        1px solid #1d3350;
+}
+
+
+.topbar h1 {
+
+    margin: 0;
+
+    font-size:
+        25px;
+
+    letter-spacing:
+        1px;
+}
+
+
+.topbar p {
+
+    margin:
+        5px 0 0;
+
+    color:
+        #91a8c7;
+}
+
+
+.badge {
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid #2f7cf6;
+
+    border-radius:
+        20px;
+
+    color:
+        #8bb8ff;
+}
+
+
+.layout {
+
+    width:
+        min(1400px, 94%);
+
+    margin:
+        20px auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        390px 1fr;
+
+    gap:
+        18px;
+}
+
+
+.panel,
+.metric {
+
+    background:
+        #0d1a2b;
+
+    border:
+        1px solid #1b3451;
+
+    border-radius:
+        14px;
+
+    padding:
+        18px;
+
+    box-shadow:
+        0 8px 24px #0004;
+}
+
+
+.controls {
+
+    grid-row:
+        span 2;
+}
+
+
+.mapPanel {
+
+    padding: 0;
+
+    overflow:
+        hidden;
+
+    min-height:
+        520px;
+
+    position:
+        relative;
+}
+
+
+#map {
+
+    height:
+        520px;
+
+    width:
+        100%;
+}
+
+
+.mapLegend {
+
+    position:
+        absolute;
+
+    bottom:
+        12px;
+
+    left:
+        12px;
+
+    background:
+        #0b1422e8;
+
+    padding:
+        8px;
+
+    border-radius:
+        9px;
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    font-size:
+        12px;
+}
+
+
+label {
+
+    display:
+        block;
+
+    font-size:
+        13px;
+
+    color:
+        #9db0c9;
+
+    margin-bottom:
+        11px;
+}
+
+
+input {
+
+    width:
+        100%;
+
+    padding:
+        11px;
+
+    border-radius:
+        8px;
+
+    border:
+        1px solid #294361;
+
+    background:
+        #081321;
+
+    color:
+        white;
+
+    margin-top:
+        6px;
+}
+
+
+.grid2 {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        10px;
+}
+
+
+.checks {
+
+    display:
+        flex;
+
+    gap:
+        20px;
+}
+
+
+.checks label {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        5px;
+}
+
+
+.checks input {
+
+    width:
+        auto;
+
+    margin:
+        0;
+}
+
+
+button {
+
+    width:
+        100%;
+
+    padding:
+        12px;
+
+    border:
+        0;
+
+    border-radius:
+        8px;
+
+    background:
+        #2478ff;
+
+    color:
+        white;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    margin-top:
+        8px;
+}
+
+
+button:hover {
+
+    filter:
+        brightness(1.12);
+}
+
+
+.secondary {
+
+    background:
+        #31516f;
+}
+
+
+.danger {
+
+    background:
+        #c33b45;
+}
+
+
+.small {
+
+    font-size:
+        12px;
+
+    color:
+        #9db0c9;
+
+    margin-top:
+        10px;
+
+    line-height:
+        1.5;
+}
+
+
+.cards {
+
+    grid-column:
+        1 / -1;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        14px;
+}
+
+
+.metric span {
+
+    display:
+        block;
+
+    color:
+        #8ea4c0;
+
+    font-size:
+        12px;
+}
+
+
+.metric strong {
+
+    display:
+        block;
+
+    font-size:
+        25px;
+
+    margin-top:
+        8px;
+}
+
+
+.forecast {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        12px;
+}
+
+
+.forecastCard,
+.scenario {
+
+    background:
+        #091523;
+
+    border:
+        1px solid #203b5b;
+
+    padding:
+        15px;
+
+    border-radius:
+        10px;
+}
+
+
+.forecastCard strong,
+.scenario strong {
+
+    font-size:
+        24px;
+
+    display:
+        block;
+
+    margin:
+        6px 0;
+}
+
+
+.LOW {
+
+    color:
+        #63dc87;
+}
+
+
+.MEDIUM {
+
+    color:
+        #ffd45b;
+}
+
+
+.HIGH {
+
+    color:
+        #ff9d42;
+}
+
+
+.CRITICAL {
+
+    color:
+        #ff5361;
+}
+
+
+.scenarioGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        12px;
+}
+
+
+.policeGrid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        12px;
+}
+
+
+.policeGrid > div {
+
+    background:
+        #091523;
+
+    padding:
+        14px;
+
+    border-radius:
+        10px;
+}
+
+
+.policeGrid p {
+
+    color:
+        #b5c5d9;
+}
+
+
+.advisory {
+
+    padding:
+        16px;
+
+    border-left:
+        4px solid #2478ff;
+
+    background:
+        #091523;
+
+    line-height:
+        1.6;
+}
+
+
+footer {
+
+    text-align:
+        center;
+
+    color:
+        #6e819b;
+
+    padding:
+        25px;
+
+    font-size:
+        12px;
+}
+
+
+@media(max-width:900px) {
+
+    .layout {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .controls {
+
+        grid-row:
+            auto;
+    }
+
+
+    .cards,
+    .forecast,
+    .scenarioGrid,
+    .policeGrid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .cards,
+    .forecast,
+    .scenarioGrid,
+    .policeGrid,
+    .grid2 {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .topbar {
+
+        align-items:
+            flex-start;
+
+        gap:
+            10px;
+    }
+}
